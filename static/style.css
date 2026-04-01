@@ -1,0 +1,205 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: "Segoe UI", sans-serif;
+    background: #0f172a; /* dark navy */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container */
+.container {
+    background: #1e293b;
+    padding: 30px;
+    width: 420px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+/* Title */
+h1 {
+    margin-bottom: 20px;
+    color: #f1f5f9;
+}
+
+/* Form */
+.task-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.task-form input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    background: #0f172a;
+    color: white;
+    outline: none;
+}
+
+.task-form input::placeholder {
+    color: #94a3b8;
+}
+
+.task-form input:focus {
+    border-color: #3b82f6;
+}
+
+/* Add button */
+.task-form button {
+    padding: 12px 16px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.task-form button:hover {
+    background: #1d4ed8;
+}
+
+/* Clear button */
+.clear-btn {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 8px 14px;
+    background: #334155;
+    color: #e2e8f0;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.clear-btn:hover {
+    background: #475569;
+}
+
+/* Task list */
+.task-list {
+    list-style: none;
+}
+
+/* Task item */
+.task-list li {
+    background: #0f172a;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #334155;
+    transition: 0.2s;
+}
+
+.task-list li:hover {
+    background: #1e293b;
+}
+
+/* Text */
+.task-list li span {
+    color: #e2e8f0;
+}
+
+/* Done task */
+.task-list li.done span {
+    text-decoration: line-through;
+    color: #64748b;
+}
+
+/* Buttons */
+.task-list li a {
+    text-decoration: none;
+    margin-left: 6px;
+    font-size: 13px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+/* Button colors */
+.complete-btn {
+    background: #16a34a;
+    color: white;
+}
+
+.edit-btn {
+    background: #3b82f6;
+    color: white;
+}
+
+.delete-btn {
+    background: #dc2626;
+    color: white;
+}
+
+/* Hover */
+.task-list li a:hover {
+    opacity: 0.8;
+}
+
+/* Edit form */
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+/* Edit input */
+.edit-form input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    background: #020617;
+    color: white;
+    outline: none;
+}
+
+/* Buttons container */
+.edit-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+/* Save button */
+.save-btn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.save-btn:hover {
+    background: #1d4ed8;
+}
+
+/* Cancel button */
+.cancel-btn {
+    background: #334155;
+    color: #e2e8f0;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.cancel-btn:hover {
+    background: #475569;
+}

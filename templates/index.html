@@ -1,0 +1,166 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<script>
+document.addEventListener("click", function(e) {
+    if (e.target.classList.contains("save-btn")) {
+        const index = e.target.getAttribute("data-index");
+        saveEdit(index);
+    }
+});
+
+function saveEdit(index) {
+    const input = document.getElementById(`edit-input-${index}`);
+    const newText = input.value;
+
+    fetch(`/edit/${index}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ task: newText })
+    })
+    .then(() => {
+        window.location.href = "/";
+    });
+}
+</script>
+<body>
+
+<div class="container">
+    <h1>My To-Do List </h1>
+
+    <!-- Add Task -->
+    <!-- <form method="POST" class="task-form">
+        <input type="text" name="task" placeholder="What needs to be done?" required>
+        <button type="submit">Add</button>
+        
+    </form>
+   
+
+    <!-- Task List -->
+ <!-- <ul class="task-list">
+{% for task in tasks %}
+    <li class="{% if task.done %}done{% endif %}">
+
+        {% if request.args.get('edit') == loop.index0|string %}
+
+        <div class="edit-form">
+            <input type="text" id="edit-input-{{ loop.index0 }}" value="{{ task.text }}">
+
+            <div class="edit-actions">
+                <button onclick="saveEdit({{ loop.index0 | int }})" class="save-btn">Save</button>
+                 <button class="save-btn" data-index="{{ loop.index0 }}">Save</button>
+                <a href="/" class="cancel-btn">Cancel</a>
+            </div>
+        </div>
+
+        {% else %}
+
+        <!-- NORMAL MODE -->
+        <!-- <span>{{ task.text }}</span>
+
+        <div>
+            <a href="/complete/{{ loop.index0 }}" class="complete-btn">Done</a>
+            <a href="/?edit={{ loop.index0 }}" class="edit-btn">Edit</a>
+            <a href="/delete/{{ loop.index0 }}" class="delete-btn">Delete</a>
+        </div>
+
+        {% endif %}
+
+    </li> -->
+<!-- {% endfor %}
+</ul>
+ <a href="/clear" class="clear-btn">Clear All </a>
+</div>
+
+</body>
+</html>  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<script>
+document.addEventListener("click", function(e) {
+    if (e.target.classList.contains("save-btn")) {
+        const id = e.target.getAttribute("data-id");
+        saveEdit(id);
+    }
+});
+
+function saveEdit(id) {
+    const input = document.getElementById(`edit-input-${id}`);
+    const newText = input.value;
+
+    fetch(`/edit/${id}`, {
+        method: "POST",   // 🔥 changed from PUT to POST (matches Flask)
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `task=${encodeURIComponent(newText)}`
+    })
+    .then(() => {
+        window.location.href = "/";
+    });
+}
+</script>
+
+<body>
+
+<div class="container">
+    <h1>My To-Do List</h1>
+
+    <!-- Add Task -->
+    <form method="POST" class="task-form">
+        <input type="text" name="task" placeholder="What needs to be done?" required>
+        <button type="submit">Add</button>
+    </form>
+
+    <!-- Task List -->
+    <ul class="task-list">
+    {% for task in tasks %}
+        <li class="{% if task[2] %}done{% endif %}">
+
+        {% if request.args.get('edit') == task[0]|string %}
+
+        <!-- EDIT MODE -->
+        <div class="edit-form">
+            <input type="text" id="edit-input-{{ task[0] }}" value="{{ task[1] }}">
+
+            <div class="edit-actions">
+                <button class="save-btn" data-id="{{ task[0] }}">Save</button>
+                <a href="/" class="cancel-btn">Cancel</a>
+            </div>
+        </div>
+
+        {% else %}
+
+        <!-- NORMAL MODE -->
+        <span>{{ task[1] }}</span>
+
+        <div>
+            <a href="/complete/{{ task[0] }}" class="complete-btn">Done</a>
+            <a href="/?edit={{ task[0] }}" class="edit-btn">Edit</a>
+            <a href="/delete/{{ task[0] }}" class="delete-btn">Delete</a>
+        </div>
+
+        {% endif %}
+
+        </li>
+    {% endfor %}
+    </ul>
+
+    <a href="/clear" class="clear-btn">Clear All</a>
+</div>
+
+</body>
+</html>
